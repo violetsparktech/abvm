@@ -1,0 +1,109 @@
+:root{--navy:#112d55;--navy-deep:#0c2140;--blue:#2456a2;--gold:#e5b855;--ink:#17263d;--muted:#697588;--paper:#f5f6f8;--line:#e1e5eb;--sans:Arial,Helvetica,sans-serif;--serif:Georgia,'Times New Roman',serif}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:14px/1.6 var(--sans)}
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font:inherit}
+.receipt-header{height:76px;padding:0 max(calc((100vw - 1060px)/2),24px);display:flex;align-items:center;justify-content:space-between;background:#fff;border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:12px}
+.brand img{width:48px;height:48px;object-fit:cover;object-position:center 50%;background:#082b69;border-radius:4px}
+.brand strong{display:block;color:var(--navy);font-size:14px}
+.brand small{display:block;color:var(--muted);font-size:10px;letter-spacing:.08em;text-transform:uppercase}
+.back-link{font-size:12px;font-weight:700;color:var(--blue)}
+.page{width:min(920px,calc(100% - 36px));margin:42px auto 80px}
+.intro{max-width:670px;margin-bottom:26px}
+.eyebrow{color:#987322;font-size:10px;font-weight:700;letter-spacing:.15em}
+h1{margin:7px 0;font:700 clamp(32px,5vw,47px)/1.14 var(--serif);color:var(--navy)}
+h1 em{color:var(--blue);font-weight:600}
+.intro>p:not(.eyebrow){color:var(--muted);font-size:13px}
+.local-notice{margin:18px 0;padding:12px 15px;border-left:3px solid var(--gold);background:#fff8e9;color:#5e543e!important;font-size:11px!important}
+.receipt-form{padding:27px 30px;background:#fff;border:1px solid var(--line);border-radius:7px;box-shadow:0 10px 30px #132a4a0b}
+.form-section{padding:7px 0 25px;margin-bottom:20px;border-bottom:1px solid var(--line)}
+.section-title{display:flex;gap:12px;align-items:flex-start;margin-bottom:18px}
+.section-title>span{display:grid;place-items:center;flex:0 0 31px;height:31px;background:#f5efdf;border-radius:50%;color:#957125;font-size:10px;font-weight:700}
+.section-title h2{margin:0;color:var(--navy);font:700 19px/1.35 var(--serif)}
+.section-title p{margin:3px 0 0;color:var(--muted);font-size:11px}
+.field-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
+.field-grid label,.amount-summary label,.remarks-field{display:block;color:#354359;font-size:11px;font-weight:700}
+label>span{color:#b44736}
+input,select,textarea{width:100%;margin-top:5px;padding:10px 11px;border:1px solid #d9dfe7;border-radius:3px;background:#fff;color:var(--ink);font-size:12px}
+input:focus,select:focus,textarea:focus{outline:2px solid #2456a233;border-color:var(--blue)}
+input[readonly]{background:#f3f5f8}
+[hidden]{display:none!important}
+.fee-headings,.fee-line{display:grid;grid-template-columns:minmax(0,1fr) 180px 37px;gap:9px;align-items:center}
+.fee-headings{margin:10px 0 2px;color:var(--muted);font-size:10px;font-weight:700}
+.fee-line{margin:5px 0}
+.fee-line input{margin:0}
+.remove-line{width:34px;height:36px;border:1px solid var(--line);border-radius:3px;background:white;color:#9d3e37;font-size:18px;cursor:pointer}
+.add-line{margin:9px 0 17px;padding:7px 10px;border:1px solid #cbd6e5;border-radius:3px;background:#f7f9fc;color:var(--blue);font-size:11px;font-weight:700;cursor:pointer}
+.amount-summary{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:end;max-width:540px;margin-left:auto}
+.amount-summary>p{grid-column:span 2;margin:0;text-align:right;color:var(--muted);font-size:12px}
+.amount-summary>p strong{padding-left:12px;color:var(--navy);font-size:15px}
+.remarks-field{margin-top:18px}
+.remarks-field small{color:var(--muted);font-weight:400}
+.form-error{min-height:18px;color:#a6342b;font-size:11px}
+.form-actions{display:flex;align-items:center;gap:17px}
+.primary-button{display:inline-flex;align-items:center;justify-content:center;gap:18px;min-height:43px;padding:0 17px;border:0;border-radius:3px;background:var(--navy);color:white;font-size:12px;font-weight:700;cursor:pointer}
+.primary-button:hover{background:#1b437d}
+.form-actions>a{font-size:11px;color:var(--muted)}
+.receipt-output{margin-top:35px}
+.output-actions{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.output-actions>p{margin:0;color:var(--navy);font:700 20px var(--serif)}
+.print-receipt{padding:35px;background:white;border:1px solid #d8dfe8;box-shadow:0 10px 30px #132a4a0b}
+.bill-header{display:grid;grid-template-columns:72px 1fr auto;gap:15px;align-items:center;padding-bottom:19px;border-bottom:2px solid var(--navy)}
+.bill-header>img{width:68px;height:68px;object-fit:cover;object-position:center 50%;background:#082b69;border-radius:4px}
+.bill-header h2{margin:0;color:var(--navy);font-size:17px;letter-spacing:.03em}
+.bill-header>div:nth-child(2)>p{margin:3px 0 0;color:var(--muted);font:15px var(--serif)}
+.receipt-label{display:grid;gap:3px;text-align:right;color:var(--muted);font-size:9px}
+.receipt-label>strong{color:#987322;font-size:11px;letter-spacing:.1em}
+.bill-status{display:inline-block;margin:18px 0 14px;padding:4px 9px;border-radius:2px;background:#e8f3ec;color:#28603e;font-size:9px;font-weight:700;letter-spacing:.08em}
+.bill-student{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;padding:14px;background:#f7f8fa}
+.bill-student>div,.payment-summary>div{display:grid;gap:3px}
+.bill-student small,.payment-summary small{color:var(--muted);font-size:8px;font-weight:700;letter-spacing:.06em}
+.bill-student strong,.payment-summary strong{color:var(--ink);font-size:11px;overflow-wrap:anywhere}
+.bill-table{width:100%;margin-top:20px;border-collapse:collapse;font-size:11px}
+.bill-table th,.bill-table td{padding:9px 10px;text-align:left;border-bottom:1px solid var(--line)}
+.bill-table th:last-child,.bill-table td:last-child{text-align:right}
+.bill-table thead th{background:#f4f6f8;color:#526176;font-size:9px}
+.bill-table tfoot th{color:var(--navy);font-size:11px}
+.payment-summary{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:16px;padding:14px;background:#f7f8fa}
+.payment-summary>div:nth-child(3) strong{color:#24623b;font-size:13px}
+.amount-words{padding:11px 0;border-bottom:1px solid var(--line);font-size:10px}
+.bill-remarks{padding:9px 11px;background:#f9fafb;font-size:10px}
+.receipt-footer{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-top:36px}
+.receipt-footer>p{max-width:350px;color:var(--muted);font-size:9px}
+.signature{min-width:170px;padding-top:8px;border-top:1px solid #7d8794;text-align:center}
+.signature span{display:block;min-height:20px;font-size:10px;font-weight:700}
+.signature small{color:var(--muted);font-size:8px}
+.receipt-caution{margin:24px 0 0;padding-top:9px;border-top:1px solid var(--line);color:#727d8b;font-size:8px}
+@media(max-width:620px){
+  .receipt-header{height:66px;padding:0 15px}
+  .brand img{width:42px;height:42px}
+  .brand strong{font-size:12px}
+  .brand small{font-size:8px}
+  .back-link{font-size:10px}
+  .page{width:calc(100% - 24px);margin:27px auto 55px}
+  .receipt-form{padding:20px 15px}
+  .field-grid{grid-template-columns:1fr;gap:11px}
+  .fee-headings,.fee-line{grid-template-columns:minmax(0,1fr) 112px 35px;gap:6px}
+  .amount-summary{grid-template-columns:1fr 1fr;gap:8px}
+  .print-receipt{padding:18px 14px}
+  .bill-header{grid-template-columns:48px 1fr;gap:10px}
+  .bill-header>img{width:46px;height:46px}
+  .bill-header h2{font-size:12px}
+  .bill-header>div:nth-child(2)>p{font-size:12px}
+  .receipt-label{grid-column:1/-1;grid-template-columns:1fr 1fr;text-align:left}
+  .receipt-label>strong{grid-column:span 2}
+  .bill-student{grid-template-columns:1fr 1fr;gap:11px;padding:10px}
+  .payment-summary{grid-template-columns:1fr 1fr;gap:11px;padding:10px}
+  .receipt-footer{margin-top:25px}
+}
+@media print{
+  @page{size:A4;margin:16mm}
+  body{background:white;color:#111;font-size:11px}
+  .receipt-header,.intro,.receipt-form,.output-actions{display:none!important}
+  .page{width:auto;margin:0}
+  .receipt-output{display:block!important;margin:0}
+  .print-receipt{padding:0;border:0;box-shadow:none}
+  .bill-header,.bill-student,.payment-summary,.bill-table,.amount-words,.receipt-footer,.receipt-caution{break-inside:avoid}
+  .receipt-output[hidden]{display:block!important}
+}

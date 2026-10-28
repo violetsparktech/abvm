@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#112d55">
+  <meta name="description" content="Prepare and print an Anand Bal Vidya Mandir fee payment receipt.">
+  <title>Staff Fee Receipt | Anand Bal Vidya Mandir</title>
+  <link rel="icon" href="./abvm-logo.jpeg" type="image/jpeg">
+  <link rel="stylesheet" href="./receipt.css">
+  <script src="./receipt.js" defer></script>
+</head>
+<body>
+  <header class="receipt-header">
+    <a class="brand" href="./index.html" aria-label="Back to Anand Bal Vidya Mandir website">
+      <img src="./abvm-logo.jpeg" alt="">
+      <span><strong>Anand Bal Vidya Mandir</strong><small>Staff fee receipt generator</small></span>
+    </a>
+    <a class="back-link" href="./index.html">← Back to website</a>
+  </header>
+
+  <main class="page">
+    <section class="intro">
+      <p class="eyebrow">STAFF TOOL · PAYMENT RECEIPT</p>
+      <h1>Record a fee <em>payment.</em></h1>
+      <p>Enter the payment details after receiving cash or confirming an online payment. Add fee heads, then generate a receipt to print or save as PDF.</p>
+      <p class="local-notice"><strong>Local-only tool:</strong> receipt details are processed in this browser and are not saved to the website database. Verify payment before issuing an official receipt. A generated receipt number is not centrally registered.</p>
+    </section>
+
+    <form class="receipt-form" id="receipt-form">
+      <section class="form-section">
+        <div class="section-title"><span>01</span><div><h2>Student & receipt details</h2><p>Enter the details exactly as they should appear on the receipt.</p></div></div>
+        <div class="field-grid">
+          <label>Student name <span>*</span><input name="student_name" required maxlength="100" autocomplete="off"></label>
+          <label>Class <span>*</span><select name="student_class" required><option value="">Select class</option><option>Nursery</option><option>LKG</option><option>UKG</option><option>Class 1</option><option>Class 2</option><option>Class 3</option><option>Class 4</option><option>Class 5</option><option>Class 6</option><option>Class 7</option><option>Class 8</option></select></label>
+          <label>Parent / guardian name<input name="guardian_name" maxlength="100" autocomplete="off"></label>
+          <label>Academic session <span>*</span><input name="academic_session" required maxlength="20" placeholder="e.g. 2026–2027"></label>
+          <label>Receipt date <span>*</span><input name="receipt_date" type="date" required></label>
+          <label>Admission / roll number<input name="student_id" maxlength="40" autocomplete="off"></label>
+        </div>
+      </section>
+
+      <section class="form-section">
+        <div class="section-title"><span>02</span><div><h2>Payment details</h2><p>For online payments, enter the transaction or reference number after verification.</p></div></div>
+        <div class="field-grid">
+          <label>Payment method <span>*</span><select name="payment_method" id="payment-method" required><option value="">Select method</option><option value="Cash">Cash</option><option value="UPI">Online — UPI</option><option value="Bank transfer">Online — bank transfer</option><option value="Card">Online — card</option><option value="Other online">Online — other</option></select></label>
+          <label id="transaction-field" hidden>Transaction / payment reference <span>*</span><input name="transaction_reference" id="transaction-reference" maxlength="100" autocomplete="off"></label>
+          <label>Received / verified by <span>*</span><input name="received_by" required maxlength="100" autocomplete="off"></label>
+        </div>
+      </section>
+
+      <section class="form-section">
+        <div class="section-title"><span>03</span><div><h2>Fee breakdown</h2><p>Add the fee heads included in this payment. Amounts are in Indian rupees.</p></div></div>
+        <div class="fee-headings" aria-hidden="true"><span>Fee head / description</span><span>Amount (₹)</span><span></span></div>
+        <div id="fee-lines" class="fee-lines"></div>
+        <button class="add-line" type="button" id="add-line">＋ Add fee head</button>
+        <div class="amount-summary">
+          <label>Total fee amount (₹)<input name="total_amount" id="total-amount" readonly value="0.00"></label>
+          <label>Amount received (₹) <span>*</span><input name="amount_received" id="amount-received" type="number" min="0.01" step="0.01" required placeholder="0.00"></label>
+          <p>Balance due: <strong id="balance-due">₹0.00</strong></p>
+        </div>
+        <label class="remarks-field">Remarks <small>(optional)</small><textarea name="remarks" rows="2" maxlength="300" placeholder="Optional payment note"></textarea></label>
+      </section>
+
+      <p class="form-error" id="form-error" role="alert"></p>
+      <div class="form-actions"><button class="primary-button" type="submit">Generate payment receipt <span aria-hidden="true">→</span></button><a href="./index.html">Cancel</a></div>
+    </form>
+
+    <section class="receipt-output" id="receipt-output" aria-live="polite" hidden>
+      <div class="output-actions"><p>Receipt preview</p><button class="primary-button" id="print-receipt" type="button">Print / Save as PDF</button></div>
+      <article class="print-receipt" id="print-receipt-content">
+        <header class="bill-header">
+          <img src="./abvm-logo.jpeg" alt="Anand Bal Vidya Mandir emblem">
+          <div><h2>ANAND BAL VIDYA MANDIR</h2><p>School Fee Payment Receipt</p></div>
+          <div class="receipt-label"><strong>PAYMENT RECEIPT</strong><span>Receipt No. <b id="out-receipt-number"></b></span><span>Date: <b id="out-date"></b></span></div>
+        </header>
+        <div class="bill-status">PAYMENT RECEIVED</div>
+        <div class="bill-student">
+          <div><small>STUDENT NAME</small><strong id="out-student"></strong></div>
+          <div><small>CLASS</small><strong id="out-class"></strong></div>
+          <div><small>ACADEMIC SESSION</small><strong id="out-session"></strong></div>
+          <div><small>PARENT / GUARDIAN</small><strong id="out-guardian"></strong></div>
+          <div><small>ADMISSION / ROLL NO.</small><strong id="out-student-id"></strong></div>
+        </div>
+        <table class="bill-table"><thead><tr><th>Fee description</th><th>Amount (₹)</th></tr></thead><tbody id="out-fee-lines"></tbody><tfoot><tr><th>Total fee amount</th><th id="out-total"></th></tr></tfoot></table>
+        <div class="payment-summary">
+          <div><small>PAYMENT METHOD</small><strong id="out-method"></strong></div>
+          <div><small>TRANSACTION / REFERENCE</small><strong id="out-reference"></strong></div>
+          <div><small>AMOUNT RECEIVED</small><strong id="out-paid"></strong></div>
+          <div><small>BALANCE DUE</small><strong id="out-balance"></strong></div>
+        </div>
+        <p class="amount-words"><b>Amount received:</b> <span id="out-amount-words"></span></p>
+        <p class="bill-remarks" id="out-remarks" hidden></p>
+        <div class="receipt-footer"><p>Payment acknowledged as entered above. Keep this receipt for your records.</p><div class="signature"><span id="out-received-by"></span><small>Received / verified by</small></div></div>
+        <p class="receipt-caution">Receipt prepared from staff-entered information. Payment should be verified before issue.</p>
+      </article>
+    </section>
+  </main>
+</body>
+</html>
